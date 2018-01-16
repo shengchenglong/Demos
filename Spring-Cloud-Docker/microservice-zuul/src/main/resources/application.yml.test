@@ -1,0 +1,82 @@
+server:
+  port: 10040
+
+logging:
+  level:
+  com.netfix: debug
+
+management:
+  security:
+    enabled: false
+
+spring:
+  application:
+    name: microservice-zuul
+
+eureka:
+  client:
+    service-url: http://localhost:10000/eureka
+
+
+
+
+#-------Zuul config---------------------------------------------
+# 1.自定义微服务的访问路径
+# zuul.routes.{serviceId}=
+zuul:
+  routes:
+  microservice-consumer-movie: movie/**
+zuul:
+  routes:
+  microservice-consumer-movie2: movie2/**
+
+# 2.忽略指定服务
+# zuul.ignored-services={serviceId1},{serviceId2}...
+#zuul.ignored-services=microservice-consumer-movie2,microservice-provider-user2
+zuul:
+  ignored-services: microservice-consumer-movie2,microservice-provider-user2
+
+# 3.忽略所有微服务，只路由指定微服务
+#zuul.ignored-services=*
+#zuul.routes.microservice-consumer-movie=movie/**
+#zuul.routes.microservice-consumer-movie2=movie2/**
+#zuul.routes.microservice-provider-user=user/**
+#zuul.routes.microservice-provider-user2=user2/**
+
+# 4.同时指定微服务的serviceId和对应路径
+# zuul.routes.{一个自定义的路由名称，可以随便写}.{属性名称}
+# 注意：注意：注意：注意：注意：这里的path必须以"/"开头，否则404
+# 属性类型如下：
+# private String id;
+# private String path;
+# private String serviceId;
+# private String url;
+# private boolean stripPrefix = true;
+# private Boolean retryable;
+# private Set<String> sensitiveHeaders = new LinkedHashSet();
+# private boolean customSensitiveHeaders = false;
+#
+#zuul.routes.movie-route.serviceId=microservice-consumer-movie
+#zuul.routes.movie-route.path=/movie/**
+#zuul.routes.movie-route.prefix=/api
+#zuul.routes.movie-route.stripPrefix=false
+#zuul.routes.movie2-route.serviceId=microservice-consumer-movie2
+#zuul.routes.movie2-route.path=/movie2/**
+#zuul.routes.user-route.serviceId=microservice-provider-user
+#zuul.routes.user-route.path=/user/**
+#zuul.routes.user2-route.serviceId=microservice-provider-user2
+#zuul.routes.user2-route.path=/user2/**
+
+# 5.同时指定path和URL
+# 6.同时指定path和URL,并且不破坏Zuul的Hystrix、Ribbon特性
+
+# 7.使用增则表达式指定Zuul的路由匹配规则
+# 8.路由前缀
+
+# 9.忽略某些路径
+
+
+
+
+#-------Zuul config---------------------------------------------
+

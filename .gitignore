@@ -1,0 +1,12 @@
+*.iml
+target/
+*.swp
+mvn/
+*.cmd
+.project
+.classpath
+.settings/
+.gitignore
+mvnw
+.mvn
+.idea/
