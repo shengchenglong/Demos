@@ -13,6 +13,7 @@
     <groupId>com.scl.demo</groupId>
     <artifactId>spring-boot-jsp-demo</artifactId>
     <version>1.0</version>
+    <packaging>war</packaging>
 
     <dependencies>
 
