@@ -6,6 +6,7 @@ import com.scl.cloud.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
@@ -14,7 +15,7 @@ import javax.annotation.Resource;
  * @version 1.0
  * @since 17/9/8 16:50 JDK 1.8
  */
-@Controller
+@RestController
 public class TurbineTestController1 {
 
     @Autowired

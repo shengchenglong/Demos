@@ -2,7 +2,6 @@ package com.scl.cloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
@@ -17,10 +16,10 @@ import org.springframework.web.client.RestTemplate;
 // 启动断路器支持
 @EnableHystrix
 //@EnableCircuitBreaker
-public class BootstrapApplication {
+public class Movie2Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BootstrapApplication.class, args);
+		SpringApplication.run(Movie2Application.class, args);
 	}
 
 	@Bean
