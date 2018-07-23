@@ -12,18 +12,10 @@
 	<description>microservice-consumer-movie</description>
 
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.1.RELEASE</version>
-		<relativePath />
+		<groupId>com.scl.cloud</groupId>
+		<artifactId>Spring-Cloud-Docker</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
-	</properties>
 
 	<dependencies>
 		<dependency>
@@ -48,10 +40,18 @@
 		<!--</dependency>-->
 
 
-
+		<!-- see gitHub issue https://github.com/spring-cloud/spring-cloud-netflix/issues/3007 -->
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-actuator</artifactId>-->
+		<!--</dependency>-->
+		<!-- java.lang.IllegalStateException: Error processing condition on org.springframework.cloud.netflix.ribbon.eureka.RibbonEurekaAutoConfiguration -->
+		<!-- java.lang.IllegalStateException: Failed to introspect Class [org.springframework.cloud.netflix.hystrix.HystrixAutoConfiguration] from ClassLoader [sun.misc.Launcher$AppClassLoader@18b4aac2] -->
+		<!-- Caused by: java.lang.NoClassDefFoundError: io/micrometer/core/instrument/binder/hystrix/HystrixMetricsBinder -->
+		<!-- Caused by: java.lang.ClassNotFoundException: io.micrometer.core.instrument.binder.hystrix.HystrixMetricsBinder -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-actuator</artifactId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
 		<!-- old version -->
@@ -69,20 +69,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		</dependency>
-
 	</dependencies>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<build>
 		<plugins>
@@ -92,6 +79,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>
