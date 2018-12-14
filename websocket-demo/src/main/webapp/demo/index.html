@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Socket JavaScritp Echo Clietn</title>
+</head>
+<body>
+<div>
+    <form action="">
+        <input onclick="connect();" value="press to connect" type="button">
+        <input onclick="send();" value="press to send" type="button">
+        <input id="textID" value="Hello Web Socket" type="text">
+        <input onclick="closeFun();" value="press to close" type="button">
+        <br>
+    </form>
+    <div id="output"></div>
+</div>
+
+</body>
+
+<script type="text/javascript">
+    var ws;
+
+    function connect() {
+        //        var wsUri = "ws://localhost:10000/websocket-demo/echo";
+        var wsUri = "ws://localhost:10000/echo";
+        write("Connecting to: " + wsUri);
+
+        // 初始化 websocket
+        ws = new WebSocket(wsUri);
+        // websocket 打开事件
+        ws.onopen = function (event) {
+            console.log("---------onopen---------");
+            console.log(event);
+            write("Connection for: " + wsUri + " is opened !");
+        }
+        // websocket 接收消息事件
+        ws.onmessage = function (event) {
+            console.log("---------onmessage---------");
+            console.log(event);
+            write("Reveived message: " + event.data);
+        }
+
+        ws.onerror = function (event) {
+            console.log("---------onerror---------");
+            console.log(event);
+            write("<span style='color: red;'>Error:</span>" + event.data);
+            ws.close();
+        };
+    }
+
+    function send() {
+        if (ws == undefined)
+            alert("Websocket 连接尚未建立！");
+        ws.send(document.getElementById("textID").value);
+    }
+
+    function closeFun() {
+        ws.close();
+        console.log("---------closeFun---------");
+        console.log(ws);
+    }
+
+    function write(ms) {
+        var pre = document.createElement("p");
+        pre.style.wordWrap = "break-word";
+        pre.innerHTML = ms;
+        output.appendChild(pre);
+    }
+</script>
+
+</html>
